@@ -37,6 +37,22 @@ botonCopiar.addEventListener("click", copiarTexto);
 
 botonEncriptar.addEventListener("click", function () {
   var textoSinEncriptar = document.querySelector(".textarea").value;
+  
+  regex = /[0-9]/g;
+  if (regex.test(textoSinEncriptar)) {
+    alert("El campo de texto no puede contener números");
+    return;
+  }
+  regex = /[@#$%^&*(),.?":{}|<>]/g;
+  if (regex.test(textoSinEncriptar)) {
+    alert("El campo de texto no puede contener caracteres especiales");
+    return;
+  }
+  var regex = /^[a-z]+$/;
+  if (!regex.test(textoSinEncriptar)) {
+    alert("El campo de texto solo puede contener letras minúsculas o palabras sin tildes");
+    return;
+  }
   var textoEncriptado = encriptarTexto(textoSinEncriptar);
   document.querySelector(".contenedor_subtitulo > h3").innerText =
     textoEncriptado;
@@ -44,6 +60,22 @@ botonEncriptar.addEventListener("click", function () {
 
 botonDesencriptar.addEventListener("click", function () {
   var textoEncriptado = document.querySelector(".textarea").value;
+
+  regex = /[0-9]/g;
+  if (regex.test(textoEncriptado)) {
+    alert("El campo de texto no puede contener números");
+    return;
+  }
+  regex = /[@#$%^&*(),.?":{}|<>]/g;
+  if (regex.test(textoEncriptado)) {
+    alert("El campo de texto no puede contener caracteres especiales");
+    return;
+  }
+  var regex = /^[a-z]+$/;
+  if (!regex.test(textoEncriptado)) {
+    alert("El campo de texto solo puede contener letras minúsculas o palabras sin tildes");
+    return;
+  }
   var textoDesencriptado = desencriptarTexto(textoEncriptado);
   document.querySelector(".contenedor_subtitulo > h3").innerText =
     "Texto desencriptado";
